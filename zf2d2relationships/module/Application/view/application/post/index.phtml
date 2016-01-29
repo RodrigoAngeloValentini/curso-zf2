@@ -1,0 +1,58 @@
+
+
+<div class="blog-header">
+	<h1 class="blog-title">Exemplo de Blog do curso ZF2 Doctrine
+		Relationships</h1>
+	<p class="lead blog-description">Aprenda a fazer sistemas com
+		relacionamentos com o Doctrine 2</p>
+</div>
+
+<div class="row">
+	
+	<?php if(count($posts)):?>
+	<div class="col-sm-8 blog-main">
+		<?php foreach($posts as $post):?>
+		<div class="blog-post">
+			<h2 class="blog-post-title">
+				<a href="/post/detalhe/<?php echo $post->getSlug()?>"><?php echo $post->getNome()?></a>
+			</h2>
+
+			<p><?php echo $post->getDescricao()?></p>
+			<div>
+				<span class="badge">Postado em <?php echo $post->getDtaInc()->format('d/m/Y H:i')?></span>
+					<?php if (count($post->getTag())):?>
+					<div class="pull-right">
+						<?php foreach ($post->getTag() as $tag):?>
+							<a href="/post/tag/<?php echo $tag->getSlug()?>"> 
+								<span class="label label-primary"><?php echo $tag->getNome()?></span>
+							</a>
+						<?php endforeach;?>
+					</div>
+					<?php endif;?>  
+				</div>
+			<hr>
+		</div>
+		<!-- /.blog-post -->
+		<?php endforeach;?>
+	</div>
+	<!-- /.blog-main -->
+	<?php endif;?>
+	<div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+
+		<div class="sidebar-module">
+			<h4>Tags</h4>
+			<?php if($tags):?>
+			<ol class="list-unstyled">
+				<?php foreach($tags as $tag):?>
+				<li><a href="/post/tag/<?php echo $tag->getSlug()?>"><?php echo $tag->getNome()?></a></li>
+				<?php endforeach;?>
+			</ol>
+			<?php endif;?>
+		</div>
+
+	</div>
+	<!-- /.blog-sidebar -->
+
+</div>
+<!-- /.row -->
+

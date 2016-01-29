@@ -1,0 +1,127 @@
+<div class="container">
+
+	<div class="blog-header">
+		<h1 class="blog-title">Exemplo de Blog do curso ZF2 Doctrine Relationships</h1>
+		<p class="lead blog-description">Aprenda a fazer sistemas com relacionamentos com o Dcotrine 2.</p>
+	</div>
+
+	<div class="row">
+	<?php if ($post):?>
+		<div class="col-sm-8 blog-main">
+			<div class="blog-post">
+				<h2 class="blog-post-title"><?php echo $post->getNome()?></h2>
+				
+
+				<p><?php echo $post->getConteudo()?></p>
+				<div>
+					<span class="badge">Postado em <?php echo $post->getDtaInc()->format('d/m/Y H:i')?></span>
+					<?php if (count($post->getTag())):?>
+					<div class="pull-right">
+						<?php foreach ($post->getTag() as $tag):?>
+						<a href="/post/tag/<?php echo $tag->getSlug()?>">
+							<span class="label label-primary"><?php echo $tag->getNome()?></span>
+						</a>
+						<?php endforeach;?>
+					</div>
+					<?php endif;?>  
+				</div>
+				<hr>
+			</div>
+			<!-- /.blog-post -->
+
+		</div>
+		<!-- /.blog-main -->
+		<?php endif?>
+	</div>
+
+	<div class="formComentario"></div>
+	
+	<script type="text/javascript">
+		$(document).ready(function() {
+			
+			var formContent = '<form action="" method="post" class="form">' +
+				'<input type="hidden" name="comentario_id">' +
+			'<input type="hidden" id="slug" name="slug" value="<?php echo $post->getSlug()?>">' +
+			'<input type="hidden" id="postId" name="postId" value="<?php echo $post->getId()?>">' +
+			'<input type="hidden" id="comentarioId" name="comentarioId" value="">' +
+			'<div class="form-group">' +
+			    '<label for="nome">Seu nome</label>' +
+			    '<input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o seu nome">' +
+			'</div>' +
+			'<div class="form-group">' +
+			    '<label for="site">Seu Site (opcional)</label>' +
+			    '<input type="text" class="form-control" id="site" name="site" placeholder="Digite o seu site">' +
+			'</div>' +
+			'<div class="form-group">' +
+			    '<label for="conteudo">Seu comentário</label>' +
+			    '<textarea class="form-control" id="conteudo" name="conteudo" placeholder="Digite o seu site"></textarea>' +
+			'</div>' +
+			'<div class="form-group">' +
+			    '<input type="submit" class="btn btn-primary" value="Submit">' +
+			'</div>' +
+		'</form>';
+		
+			$('.formComentario').append(formContent);
+
+			$('.comentar').on('click', function() {
+				console.log(formContent);
+				$(this).parent().after().append(formContent);
+				form = $(this).parent().children('.form');
+				comentarioId = $(this).data('comentario');
+				form.find('#comentarioId').attr('value', comentarioId);
+				console.log($(this).parent().children('.form'));
+			});
+			
+		});
+
+	
+	</script>
+	
+	<?php if (count($comentarios)):?>
+	<div class="bs-example">
+		<ul class="media-list">
+			<?php foreach ($comentarios as $comentario):?>
+			<li class="media">
+				<a class="pull-left" href="#"> 
+					<img class="media-object" data-src="holder.js/64x64" alt="64x64" style="width: 64px; height: 64px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAACDUlEQVR4Xu2Yz6/BQBDHpxoEcfTjVBVx4yjEv+/EQdwa14pTE04OBO+92WSavqoXOuFp+u1JY3d29rvfmQ9r7Xa7L8rxY0EAOAAlgB6Q4x5IaIKgACgACoACoECOFQAGgUFgEBgEBnMMAfwZAgaBQWAQGAQGgcEcK6DG4Pl8ptlsRpfLxcjYarVoOBz+knSz2dB6vU78Lkn7V8S8d8YqAa7XK83ncyoUCjQej2m5XNIPVmkwGFC73TZrypjD4fCQAK+I+ZfBVQLwZlerFXU6Her1eonreJ5HQRAQn2qj0TDukHm1Ws0Ix2O2260RrlQqpYqZtopVAoi1y+UyHY9Hk0O32w3FkI06jkO+74cC8Dh2y36/p8lkQovFgqrVqhFDEzONCCoB5OSk7qMl0Gw2w/Lo9/vmVMUBnGi0zi3Loul0SpVKJXRDmphvF0BOS049+n46nW5sHRVAXMAuiTZObcxnRVA5IN4DJHnXdU3dc+OLP/V63Vhd5haLRVM+0jg1MZ/dPI9XCZDUsbmuxc6SkGxKHCDzGJ2j0cj0A/7Mwti2fUOWR2Km2bxagHgt83sUgfcEkN4RLx0phfjvgEdi/psAaRf+lHmqEviUTWjygAC4EcKNEG6EcCOk6aJZnwsKgAKgACgACmS9k2vyBwVAAVAAFAAFNF0063NBAVAAFAAFQIGsd3JN/qBA3inwDTUHcp+19ttaAAAAAElFTkSuQmCC">
+				</a>
+				<div class="media-body">
+					<h4 class="media-heading"><?php echo $comentario->getNome()?></h4>
+					<p><?php echo $comentario->getConteudo()?></p>
+					<a href="javascript:;" class="btn btn-primary comentar" data-comentario="<?php echo $comentario->getId()?>">Comentar</a>
+					<!-- Nested media object -->
+					<?php if (count($comentario->getChildren())):?>
+						<?php foreach ($comentario->getChildren() as $subComentario):?>
+						<div class="media">
+							<a class="pull-left" href="#"> <img class="media-object" data-src="holder.js/64x64" alt="64x64" style="width: 64px; height: 64px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAACDUlEQVR4Xu2Yz6/BQBDHpxoEcfTjVBVx4yjEv+/EQdwa14pTE04OBO+92WSavqoXOuFp+u1JY3d29rvfmQ9r7Xa7L8rxY0EAOAAlgB6Q4x5IaIKgACgACoACoECOFQAGgUFgEBgEBnMMAfwZAgaBQWAQGAQGgcEcK6DG4Pl8ptlsRpfLxcjYarVoOBz+knSz2dB6vU78Lkn7V8S8d8YqAa7XK83ncyoUCjQej2m5XNIPVmkwGFC73TZrypjD4fCQAK+I+ZfBVQLwZlerFXU6Her1eonreJ5HQRAQn2qj0TDukHm1Ws0Ix2O2260RrlQqpYqZtopVAoi1y+UyHY9Hk0O32w3FkI06jkO+74cC8Dh2y36/p8lkQovFgqrVqhFDEzONCCoB5OSk7qMl0Gw2w/Lo9/vmVMUBnGi0zi3Loul0SpVKJXRDmphvF0BOS049+n46nW5sHRVAXMAuiTZObcxnRVA5IN4DJHnXdU3dc+OLP/V63Vhd5haLRVM+0jg1MZ/dPI9XCZDUsbmuxc6SkGxKHCDzGJ2j0cj0A/7Mwti2fUOWR2Km2bxagHgt83sUgfcEkN4RLx0phfjvgEdi/psAaRf+lHmqEviUTWjygAC4EcKNEG6EcCOk6aJZnwsKgAKgACgACmS9k2vyBwVAAVAAFAAFNF0063NBAVAAFAAFQIGsd3JN/qBA3inwDTUHcp+19ttaAAAAAElFTkSuQmCC">
+							</a>
+							<div class="media-body">
+								<h4 class="media-heading"><?php echo $subComentario->getNome()?></h4>
+								<p><?php echo $subComentario->getConteudo()?></p>
+								<a href="javascript:;" class="btn btn-primary comentar" data-comentario="<?php echo $subComentario->getId()?>">Comentar</a>
+								<!-- Nested media object -->
+								<?php if (count($subComentario->getChildren())):?>
+								<?php foreach ($subComentario->getChildren() as $subComentario2):?>
+								<div class="media">
+									<a class="pull-left" href="#"> <img class="media-object" data-src="holder.js/64x64" alt="64x64" style="width: 64px; height: 64px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAACDUlEQVR4Xu2Yz6/BQBDHpxoEcfTjVBVx4yjEv+/EQdwa14pTE04OBO+92WSavqoXOuFp+u1JY3d29rvfmQ9r7Xa7L8rxY0EAOAAlgB6Q4x5IaIKgACgACoACoECOFQAGgUFgEBgEBnMMAfwZAgaBQWAQGAQGgcEcK6DG4Pl8ptlsRpfLxcjYarVoOBz+knSz2dB6vU78Lkn7V8S8d8YqAa7XK83ncyoUCjQej2m5XNIPVmkwGFC73TZrypjD4fCQAK+I+ZfBVQLwZlerFXU6Her1eonreJ5HQRAQn2qj0TDukHm1Ws0Ix2O2260RrlQqpYqZtopVAoi1y+UyHY9Hk0O32w3FkI06jkO+74cC8Dh2y36/p8lkQovFgqrVqhFDEzONCCoB5OSk7qMl0Gw2w/Lo9/vmVMUBnGi0zi3Loul0SpVKJXRDmphvF0BOS049+n46nW5sHRVAXMAuiTZObcxnRVA5IN4DJHnXdU3dc+OLP/V63Vhd5haLRVM+0jg1MZ/dPI9XCZDUsbmuxc6SkGxKHCDzGJ2j0cj0A/7Mwti2fUOWR2Km2bxagHgt83sUgfcEkN4RLx0phfjvgEdi/psAaRf+lHmqEviUTWjygAC4EcKNEG6EcCOk6aJZnwsKgAKgACgACmS9k2vyBwVAAVAAFAAFNF0063NBAVAAFAAFQIGsd3JN/qBA3inwDTUHcp+19ttaAAAAAElFTkSuQmCC">
+									</a>
+									<div class="media-body">
+										<h4 class="media-heading"><?php echo $subComentario2->getNome()?></h4>
+										<p><?php echo $subComentario2->getConteudo()?></p>
+										<!-- Nested media object -->
+									</div>
+								</div>
+								<?php endforeach;?>
+							<?php endif;?>
+							</div>
+						</div>
+						<?php endforeach;?>
+					<?php endif;?>
+				</div>
+			</li>
+			<?php endforeach;?>
+		</ul>
+	</div>
+	<?php endif?>
+
+</div>

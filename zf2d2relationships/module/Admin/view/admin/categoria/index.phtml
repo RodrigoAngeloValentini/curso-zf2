@@ -1,0 +1,32 @@
+<p><a href="/admin/categoria/cadastrar"><i class="glyphicon glyphicon-plus"></i></a></p>
+
+<div class="panel panel-default">
+	<!-- Default panel contents -->
+	<div class="panel-heading">Categorias</div>
+	<!-- Table -->
+	<table class="table">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Nome</th>
+				<th>Slug</th>
+				<th>Opções</th>
+			</tr>
+		</thead>
+		<?php if(count($data)):?>
+		<?php foreach($data as $categoria):?>
+		<tbody>
+			<tr>
+				<td><?php echo $categoria->getId()?></td>
+				<td><?php echo $categoria->getNome()?></td>
+				<td><?php echo $categoria->getSlug()?></td>
+				<td>
+					<a href="/admin/categoria/editar/<?php echo $categoria->getId()?>"><i class="glyphicon glyphicon-pencil"></i></a>
+					<a href="/admin/categoria/delete/<?php echo $categoria->getId()?>"><i class="glyphicon glyphicon-remove-sign"></i></a>
+				</td>
+			</tr>
+		</tbody>
+		<?php endforeach;?>
+		<?php endif;?>
+	</table>
+</div>

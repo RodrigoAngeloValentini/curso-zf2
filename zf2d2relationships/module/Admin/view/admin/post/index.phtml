@@ -1,0 +1,34 @@
+<p><a href="/admin/post/cadastrar"><i class="glyphicon glyphicon-plus"></i></a></p>
+<div class="panel panel-default">
+	<!-- Default panel contents -->
+	<div class="panel-heading">Posts</div>
+	
+	<!-- Table -->
+	<table class="table">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Categoria</th>
+				<th>Titulo</th>
+				<th>Data</th>
+				<th>Opções</th>
+			</tr>
+		</thead>
+		<?php if (count($data)):?>
+		<?php foreach ($data as $post):?>
+		<tbody>
+			<tr>
+				<td><?php echo $post->getId()?></td>
+				<td><?php echo $post->getCategoria()->getNome()?></td>
+				<td><?php echo $post->getNome()?></td>
+				<td><?php echo $post->getDtaInc()->format('d/m/Y H:i')?></td>
+				<td>
+					<a href="/admin/post/editar/<?php echo $post->getId()?>"><i class="glyphicon glyphicon-pencil"></i></a> 
+					<a href="/admin/post/delete/<?php echo $post->getId()?>"><i class="glyphicon glyphicon-remove-sign"></i></a> 
+				</td>
+			</tr>
+		</tbody>
+		<?php endforeach;?>
+		<?php endif;?>
+	</table>
+</div>

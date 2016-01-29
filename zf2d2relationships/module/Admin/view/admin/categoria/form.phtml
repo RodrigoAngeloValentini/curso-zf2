@@ -1,0 +1,15 @@
+<div class="panel panel-default">
+	<!-- Default panel contents -->
+	<div class="panel-heading">Categorias</div>
+	<!-- Table -->
+	<?php echo $this->form()->openTag($form)?>
+	<table class="table" style="width:500px;">
+		<tr>
+			<td><?php echo $this->formRow($form->get('nome'))?></td>
+		</tr>
+		<tr>
+			<td><?php echo $this->formRow($form->get('submit'))?></td>
+		</tr>
+	</table>
+	<?php echo $this->form()->closeTag($form)?>
+</div>
