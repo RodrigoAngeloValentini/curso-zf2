@@ -1,0 +1,25 @@
+<?php
+
+$title = 'Minhas Categorias';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>Nome</th>
+        <th>&nbsp;</th>
+    </tr>
+    <?php foreach ($categorias as $categoria) : ?>
+        <tr>
+<!--        ZendDB-->
+<!--        <td>--><?php //echo $this->escapeHtml($categoria->id);?><!--</td>-->
+<!--        <td>--><?php //echo $this->escapeHtml($categoria->nome);?><!--</td>-->
+
+<!--        Doctrine-->
+            <td><?php echo $this->escapeHtml($categoria->getId());?></td>
+            <td><?php echo $this->escapeHtml($categoria->getNome());?></td>
+        </tr>
+    <?php endforeach; ?>
+</table>

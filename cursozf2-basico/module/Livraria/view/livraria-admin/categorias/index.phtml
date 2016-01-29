@@ -1,0 +1,28 @@
+<?php
+
+$title = 'Categorias';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+<p><a href="<?php echo $this->url('livraria-admin',array('controller'=>'categorias', 'action'=> 'new'))?>" class="btn btn-primary">Novo</a></p>
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>Nome</th>
+        <th>Ação</th>
+    </tr>
+    <?php foreach ($this->data as $entity) : ?>
+        <tr>
+            <td><?php echo $entity->getId();?></td>
+            <td><?php echo $entity->getNome();?></td>
+            <td>
+                <a href="<?php echo $this->url('livraria-admin-interna',array('controller'=>'categorias','action'=>'edit','id'=>$entity->getId()));?>" class="btn btn-info btn-sm">Editar</a>
+                <a href="<?php echo $this->url('livraria-admin-interna',array('controller'=>'categorias','action'=>'delete','id'=>$entity->getId()));?>" class="btn btn-danger btn-sm">Deletar</a>
+
+            </td>
+        </tr>
+    <?php endforeach; ?>
+</table>
+<br>
+<?php echo $this->paginationControl($this->data,'Sliding','paginator'); ?>

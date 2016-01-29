@@ -1,0 +1,22 @@
+<h3>Editando categoria</h3>
+
+<br />
+
+<?php
+$form = $this->form; 
+
+$form->setAttribute('action', $this->url('livraria-admin-interna',array('controller'=>'livros','action'=>'edit')));
+
+$form->prepare();
+echo $this->form()->openTag($form);
+echo $this->formHidden($form->get('id'));
+
+echo $this->formRow($form->get('nome'));
+echo $this->formRow($form->get('categoria'));
+echo "<div class='clearfix'></div>";
+echo $this->formRow($form->get('autor'));
+echo $this->formRow($form->get('valor'));
+echo $this->formRow($form->get('isbn'))."<br />";
+echo $this->formSubmit($form->get('submit'));
+echo $this->form()->closeTag();
+?>

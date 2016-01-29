@@ -1,0 +1,16 @@
+<h3>Editar Categoria</h3>
+
+<br>
+
+<?php
+$form = $this->form;
+
+$form->setAttribute('action', $this->url('livraria-admin-interna', array('controller'=> 'categorias', 'action'=> 'edit')));
+
+$form->prepare();
+echo $this->form()->openTag($form);
+echo $this->formHidden($form->get('id'));
+echo $this->formRow($form->get('nome'))."<br />";
+echo $this->formSubmit($form->get('submit'));
+echo $this->form()->closeTag($form);
+?>
