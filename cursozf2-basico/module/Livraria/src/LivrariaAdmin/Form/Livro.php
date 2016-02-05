@@ -14,7 +14,7 @@ class Livro extends Form {
         $this->categorias  = $categorias;
 
         $this->setAttribute('method', 'post');
-        //$this->setInputFilter(new LivroFilter);
+        $this->setInputFilter(new LivroFilter);
 
         $this->add(array(
             'name' => 'id',

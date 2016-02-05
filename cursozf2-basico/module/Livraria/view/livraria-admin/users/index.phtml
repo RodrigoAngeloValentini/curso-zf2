@@ -1,0 +1,33 @@
+<h1>Users</h1>
+<br />
+
+<p>
+    <a href="<?php echo $this->url('livraria-admin',array('controller'=>'users','action'=>'new')); ?>" class="btn btn-primary">Novo</a>
+</p>
+
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Ação</th>
+    </tr>
+    
+    <?php foreach($this->data as $entity): ?>
+    <tr>
+        <td><?php echo $entity->getId(); ?></td>
+        <td><?php echo $entity->getNome(); ?></td>
+        <td><?php echo $entity->getEmail(); ?></td>
+        <td>
+            <a href="<?php echo $this->url('livraria-admin-interna',
+                    array('controller'=>'users','action'=>'edit','id'=>$entity->getId())); ?>" class="btn btn-info btn-sm">Editar</a>
+            <a href="<?php echo $this->url('livraria-admin-interna',
+                    array('controller'=>'users','action'=>'delete','id'=>$entity->getId())); ?>" class="btn btn-danger btn-sm">Deletar</a>
+        </td>
+    </tr>
+    <?php endforeach; ?>
+    
+</table>
+<br />
+
+<?php echo $this->paginationControl($this->data,'Sliding','paginator'); ?>
