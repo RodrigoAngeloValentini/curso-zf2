@@ -29,10 +29,15 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="<?php echo $this->url('livraria-home') ?>">Livraria</a>
+                    <a class="brand" href="<?php echo $this->url('livraria-home') ?>">Livraria Admin</a>
                     <div class="nav-collapse">
                         <ul class="nav">
-                   
+<!--                            --><?php //if ($this->UserIdentity('LivrariaAdmin')): ?>
+                                <li class="active"><a href="<?php echo $this->url('livraria-admin', array('controller' => 'categorias')) ?>">Categorias</a></li>
+                                <li class="active"><a href="<?php echo $this->url('livraria-admin', array('controller' => 'livros')) ?>">Livros</a></li>
+                                <li class="active"><a href="<?php echo $this->url('livraria-admin', array('controller' => 'users')) ?>">Users</a></li>
+                                <li class="active"><a href="<?php echo $this->url('livraria-admin-logout') ?>">Logout</a></li>
+<!--                            --><?php //endif; ?>
                         </ul>
                     </div><!--/.nav-collapse -->
                 </div>

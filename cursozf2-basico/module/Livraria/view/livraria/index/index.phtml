@@ -1,25 +1,16 @@
-<?php
+<h1>Categorias</h1>
+<br />
 
-$title = 'Minhas Categorias';
-$this->headTitle($title);
-?>
-<h1><?php echo $this->escapeHtml($title); ?></h1>
+<ul>
+    <?php foreach ($this->categorias as $categoria): ?>
+        <li><?php echo $categoria; ?>
 
-<table class="table">
-    <tr>
-        <th>Id</th>
-        <th>Nome</th>
-        <th>&nbsp;</th>
-    </tr>
-    <?php foreach ($categorias as $categoria) : ?>
-        <tr>
-<!--        ZendDB-->
-<!--        <td>--><?php //echo $this->escapeHtml($categoria->id);?><!--</td>-->
-<!--        <td>--><?php //echo $this->escapeHtml($categoria->nome);?><!--</td>-->
+            <ul>
+                <?php foreach ($categoria->getLivros() as $livro): ?>
+                    <li><?php echo $livro->getNome(); ?></li>
+                <?php endforeach; ?>
 
-<!--        Doctrine-->
-            <td><?php echo $this->escapeHtml($categoria->getId());?></td>
-            <td><?php echo $this->escapeHtml($categoria->getNome());?></td>
-        </tr>
+            </ul>
+        </li>
     <?php endforeach; ?>
-</table>
+</ul>
