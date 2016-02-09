@@ -49,9 +49,12 @@ return array(
                     __NAMESPACE__ . '\Entity' => __NAMESPACE__ . '_driver'
                 ),
             ),
+            'fixture' => array(
+                __NAMESPACE__.'_fixture' => __DIR__ . '/../src/'.__NAMESPACE__.'/Fixture',
+            ),
         ),
     ),
     'data-fixture' => array(
-      'SONUser_fixture' => __DIR__.'/../src/SONUser/Fixture',
+        __NAMESPACE__.'_fixture' => __DIR__ . '/../src/'.__NAMESPACE__.'/Fixture',
     ),
 );

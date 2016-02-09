@@ -1,0 +1,3 @@
+vendor/bin/doctrine-module orm:convert-mapping --filter="SonuserUsers" --from-database annotation module/SONUser/src/SONUser/Entity/
+
+vendor/bin/doctrine-module data-fixture:import

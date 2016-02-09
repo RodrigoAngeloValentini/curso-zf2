@@ -1058,7 +1058,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/9c3582b20a916a5599ede39dea4b1248d1ad46d1",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/1650650d901849c1919f060ae97bc8642cc99e51",
                 "reference": "9c3582b20a916a5599ede39dea4b1248d1ad46d1",
                 "shasum": ""
             },
@@ -2063,7 +2063,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/7e7f0903e26a01647ad76e53fb5f6e294da187b2",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/05a12065aa18e049f3cf91b0038374e4b1dbcb41",
                 "reference": "7e7f0903e26a01647ad76e53fb5f6e294da187b2",
                 "shasum": ""
             },
@@ -2455,7 +2455,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-console/zipball/dd5eb66bbf8783be47a7ce4bdafb19281998c4af",
+                "url": "https://api.github.com/repos/zendframework/zend-console/zipball/b4f9e689994568cd3dc7c46fabcfbdc0a408a335",
                 "reference": "dd5eb66bbf8783be47a7ce4bdafb19281998c4af",
                 "shasum": ""
             },
@@ -2967,7 +2967,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-filter/zipball/2d5df305173b031f7d48dd7f22432489e4f69460",
+                "url": "https://api.github.com/repos/zendframework/zend-filter/zipball/5fcced1dbb61d4cf3ac5bdef228d11688f261f14",
                 "reference": "2d5df305173b031f7d48dd7f22432489e4f69460",
                 "shasum": ""
             },
@@ -3450,7 +3450,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-log/zipball/645b06011e359c1796e33052e2a1f366d7ad2306",
+                "url": "https://api.github.com/repos/zendframework/zend-log/zipball/25ff5ffdc2c23b555203fdcb58b4b7f461e2a4b4",
                 "reference": "645b06011e359c1796e33052e2a1f366d7ad2306",
                 "shasum": ""
             },
@@ -4561,7 +4561,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-text/zipball/7cfa026ec2ff709e3fdcc9e9cc9d27e7934accc6",
+                "url": "https://api.github.com/repos/zendframework/zend-text/zipball/0877441b34d45a70e4777d90944df1cde758ccb5",
                 "reference": "7cfa026ec2ff709e3fdcc9e9cc9d27e7934accc6",
                 "shasum": ""
             },
