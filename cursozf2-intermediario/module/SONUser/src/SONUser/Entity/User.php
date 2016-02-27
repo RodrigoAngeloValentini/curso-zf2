@@ -3,21 +3,24 @@
 namespace SONUser\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+
 use Zend\Math\Rand,
     Zend\Crypt\Key\Derivation\Pbkdf2;
 
 use Zend\Stdlib\Hydrator;
+
 /**
  * SonuserUsers
  *
- * @ORM\Table(name="sonuser_users", uniqueConstraints={@ORM\UniqueConstraint(name="email", columns={"email"})})
+ * @ORM\Table(name="sonuser_users")
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks
+ * @ORM\Entity(repositoryClass="SONUser\Entity\UserRepository")
  */
-class SonuserUsers
+class User
 {
     /**
-     * @var int
+     * @var integer
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
@@ -54,7 +57,7 @@ class SonuserUsers
     private $salt;
 
     /**
-     * @var bool
+     * @var boolean
      *
      * @ORM\Column(name="active", type="boolean", nullable=true)
      */
@@ -81,172 +84,113 @@ class SonuserUsers
      */
     private $createdAt;
 
+
     public function __construct(array $options = array())
     {
-        //$hydrator = new Hydrator\ClassMethods;
-        //$hydrator->hydrate($options, $this);
-        (new Hydrator\ClassMethods)->hydrate($options, $this);
+        /*
+        $hydrator = new Hydrator\ClassMethods;
+        $hydrator->hydrate($options, $this);
+        */
+
+        (new Hydrator\ClassMethods)->hydrate($options,$this);
 
         $this->createdAt = new \DateTime("now");
         $this->updatedAt = new \DateTime("now");
 
-        $this->salt = base64_encode(Rand::getBytes(8,true));
+        $this->salt = base64_encode(Rand::getBytes(8, true));
         $this->activationKey = md5($this->email.$this->salt);
+
+
     }
-    /**
-     * @return int
-     */
-    public function getId()
-    {
+
+    public function getId() {
         return $this->id;
     }
 
-    /**
-     * @param int $id
-     */
-    public function setId($id)
-    {
+    public function setId($id) {
         $this->id = $id;
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getNome()
-    {
+    public function getNome() {
         return $this->nome;
     }
 
-    /**
-     * @param string $nome
-     */
-    public function setNome($nome)
-    {
+    public function setNome($nome) {
         $this->nome = $nome;
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getEmail()
-    {
+    public function getEmail() {
         return $this->email;
     }
 
-    /**
-     * @param string $email
-     */
-    public function setEmail($email)
-    {
+    public function setEmail($email) {
         $this->email = $email;
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getPassword()
-    {
+    public function getPassword() {
         return $this->password;
     }
 
-    /**
-     * @param string $password
-     */
-    public function setPassword($password)
-    {
+    public function setPassword($password) {
         $this->password = $this->encryptPassword($password);
         return $this;
     }
 
-    public function encryptPassword($password){
-        return base64_encode(Pbkdf2::calc('sha256',$password,$this->salt,10000,strlen($password*2)));
-    }
-    /**
-     * @return string
-     */
-    public function getSalt()
+    public function encryptPassword($password)
     {
+        return base64_encode(Pbkdf2::calc('sha256', $password, $this->salt, 10000, strlen($password*2)));
+    }
+
+    public function getSalt() {
         return $this->salt;
     }
 
-    /**
-     * @param string $salt
-     */
-    public function setSalt($salt)
-    {
+    public function setSalt($salt) {
         $this->salt = $salt;
         return $this;
     }
 
-    /**
-     * @return boolean
-     */
-    public function isActive()
-    {
+    public function getActive() {
         return $this->active;
     }
 
-    /**
-     * @param boolean $active
-     */
-    public function setActive($active)
-    {
+    public function setActive($active) {
         $this->active = $active;
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getActivationKey()
-    {
+    public function getActivationKey() {
         return $this->activationKey;
     }
 
-    /**
-     * @param string $activationKey
-     */
-    public function setActivationKey($activationKey)
-    {
+    public function setActivationKey($activationKey) {
         $this->activationKey = $activationKey;
         return $this;
     }
 
-    /**
-     * @return \DateTime
-     */
-    public function getUpdatedAt()
-    {
+    public function getUpdatedAt() {
         return $this->updatedAt;
     }
 
-    /**
-     * @param \DateTime $updatedAt
-     * @ORM\prePersist
-     */
-    public function setUpdatedAt()
-    {
-        $this->updatedAt = \DateTime("now");
+
+    public function setUpdatedAt() {
+        $this->updatedAt = new \DateTime("now");
     }
 
-    /**
-     * @return \DateTime
-     */
-    public function getCreatedAt()
-    {
+    public function getCreatedAt() {
         return $this->createdAt;
     }
 
-    /**
-     * @param \DateTime $createdAt
-     */
-    public function setCreatedAt()
+    public function setCreatedAt() {
+        $this->createdAt = new \DateTime("now");
+    }
+
+    public function toArray()
     {
-        $this->createdAt = \DateTime("now");
+        return (new Hydrator\ClassMethods())->extract($this);
     }
 
 }
-
