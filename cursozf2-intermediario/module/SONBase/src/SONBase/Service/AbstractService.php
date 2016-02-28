@@ -1,6 +1,6 @@
 <?php
 
-namespace SONUser\Service;
+namespace SONBase\Service;
 
 use Doctrine\ORM\EntityManager;
 use Zend\Stdlib\Hydrator;

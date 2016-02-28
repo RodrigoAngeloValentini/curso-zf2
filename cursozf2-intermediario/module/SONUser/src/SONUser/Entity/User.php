@@ -84,25 +84,25 @@ class User
      */
     private $createdAt;
 
-
-    public function __construct(array $options = array())
+    
+    public function __construct(array $options = array()) 
     {
         /*
         $hydrator = new Hydrator\ClassMethods;
         $hydrator->hydrate($options, $this);
         */
-
+        
         (new Hydrator\ClassMethods)->hydrate($options,$this);
-
+        
         $this->createdAt = new \DateTime("now");
         $this->updatedAt = new \DateTime("now");
-
+        
         $this->salt = base64_encode(Rand::getBytes(8, true));
         $this->activationKey = md5($this->email.$this->salt);
-
-
+        
+        
     }
-
+    
     public function getId() {
         return $this->id;
     }
@@ -143,7 +143,7 @@ class User
     {
         return base64_encode(Pbkdf2::calc('sha256', $password, $this->salt, 10000, strlen($password*2)));
     }
-
+    
     public function getSalt() {
         return $this->salt;
     }
@@ -174,7 +174,6 @@ class User
     public function getUpdatedAt() {
         return $this->updatedAt;
     }
-
 
     public function setUpdatedAt() {
         $this->updatedAt = new \DateTime("now");

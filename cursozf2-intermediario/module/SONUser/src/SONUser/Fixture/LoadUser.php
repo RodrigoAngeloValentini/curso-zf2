@@ -12,24 +12,24 @@ use SONUser\Entity\User;
 
 class LoadUser extends AbstractFixture implements OrderedFixtureInterface
 {
-
+    
     public function load(ObjectManager $manager) {
         $user = new User();
-        $user->setNome("Rodrigo")
-            ->setEmail("rodrigoangelovalentini@gmail.com")
-            ->setPassword(123456)
-            ->setActive(true);
-
+        $user->setNome("Wesley")
+                ->setEmail("wesley.teste@schoolofnet.com")
+                ->setPassword(123456)
+                ->setActive(true);
+        
         $manager->persist($user);
-
+        
         $user = new User();
         $user->setNome("Admin")
-            ->setEmail("admin@admin.com")
-            ->setPassword(123456)
-            ->setActive(true);
-
+                ->setEmail("admin.teste@schoolofnet.com")
+                ->setPassword(123456)
+                ->setActive(true);
+        
         $manager->persist($user);
-
+        
         $manager->flush();
     }
 

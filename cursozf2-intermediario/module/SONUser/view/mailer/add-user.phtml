@@ -1,9 +1,10 @@
-Olá <?php echo $this->nome;?>
-<br>
-<br>
+Olá <?php echo $this->nome;?>,
+<br />
+<br />
 
 <p>
-    Esse email tem o objetivo de configurar seu cadastro em nosso sistema.
-    <br>
-    Para ativar sua conta, acesse: http://<?php echo $this->url('sonuser-active',array('key'=>$this->activationKey));?>
+    Esse email tem o objetivo de confirmar seu cadastro em nosso sistema.
+    <br />
+    Para ativar sua conta, acesse: http://<?php echo $this->url('sonuser-activate', array('key'=>$this->activationKey)); ?>
+    
 </p>
