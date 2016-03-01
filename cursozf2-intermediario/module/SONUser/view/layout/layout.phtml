@@ -32,7 +32,9 @@
                     <div class="nav-collapse collapse">
                         <ul class="nav">
                             <li class="active"><a href="<?php echo $this->url('home') ?>"><?php echo 'Home' ?></a></li>
-
+                            <?php if($this->UserIdentity("SONUser")): ?>
+                                <li class="active"><a href="<?php echo $this->url('sonuser-logout') ?>"><?php echo 'Logout' ?></a></li>
+                            <?php endif; ?>
                         </ul>
                     </div><!--/.nav-collapse -->
                 </div>
