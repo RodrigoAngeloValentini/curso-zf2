@@ -58,6 +58,21 @@ class Module
                 'SONAcl\Service\Privilege' => function ($sm){
                     return new \SONAcl\Service\Privilege($sm->get('Doctrine\ORM\EntityManager'));
                 },
+                'SONAcl\Permissions\Acl' => function($sm)
+                {
+                    $em = $sm->get('Doctrine\ORM\EntityManager');
+
+                    $repoRole = $em->getRepository("SONAcl\Entity\Role");
+                    $roles = $repoRole->findAll();
+
+                    $repoResource = $em->getRepository("SONAcl\Entity\Resource");
+                    $resources = $repoResource->findAll();
+
+                    $repoPrivilege = $em->getRepository("SONAcl\Entity\Privilege");
+                    $privileges = $repoPrivilege->findAll();
+
+                    return new Permissions\Acl($roles,$resources,$privileges);
+                }
             )
         );
 

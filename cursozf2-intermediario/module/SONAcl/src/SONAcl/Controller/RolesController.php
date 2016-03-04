@@ -65,7 +65,8 @@ class RolesController extends CrudController
     {
         $acl = $this->getServiceLocator()->get("SONAcl\Permissions\Acl");
 
-        echo $acl->isAllowed("Redator","Posts","Excluir")? "Permitido" : "Negado";
+//        echo $acl->isAllowed("Redator","Posts","Excluir")? "Permitido" : "Negado";
+        echo $acl->isAllowed("Visitante","Posts","Visualizar")? "Permitido" : "Negado";
         die;
     }
 }
