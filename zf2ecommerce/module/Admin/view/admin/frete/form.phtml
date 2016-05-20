@@ -1,0 +1,35 @@
+<div class="panel panel-default">
+	<div class="panel-heading">Frete</div>
+	<?php echo $this->form()->openTag($form)?>
+		<div class="panel-body">
+			<div class="form-group">
+				<label for="transporte"><?php echo $this->formLabel($form->get('transporte'))?></label>
+				<?php echo $this->formElement($form->get('transporte'))?>
+				<?php echo $this->formElementErrors($form->get('transporte'))?>
+			</div>
+			
+			<div class="form-group">
+				<label for="faixa_cep_de"><?php echo $this->formLabel($form->get('faixa_cep_de'))?></label>
+				<?php echo $this->formElement($form->get('faixa_cep_de'))?>
+				<?php echo $this->formElementErrors($form->get('faixa_cep_de'))?>
+			</div>
+			
+			<div class="form-group">
+				<label for="faixa_cep_ate"><?php echo $this->formLabel($form->get('faixa_cep_ate'))?></label>
+				<?php echo $this->formElement($form->get('faixa_cep_ate'))?>
+				<?php echo $this->formElementErrors($form->get('faixa_cep_ate'))?>
+			</div>
+			
+			<div class="form-group">
+				<label for="vlr"><?php echo $this->formLabel($form->get('vlr'))?></label>
+				<?php echo $this->formElement($form->get('vlr'))?>
+				<?php echo $this->formElementErrors($form->get('vlr'))?>
+			</div>
+		
+		</div>
+		<div class="panel-footer">
+			<input type="button" onclick="document.location.href='/admin/<?php echo $controller?>'" value="Voltar">
+			<input type="submit" value="Salvar">			
+		</div>
+	<?php echo $this->form()->closeTag($form)?>
+</div>

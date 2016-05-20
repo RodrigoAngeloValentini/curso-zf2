@@ -1,0 +1,597 @@
+<section id="content">
+<div id="breadcrumb-container">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="index.html">Home</a></li>
+            <li class="active">Product</li>
+        </ul>
+    </div>
+</div>
+<div class="container">
+<div class="row">
+<div class="col-md-12">
+
+<div class="row">
+    <form name="form-produto" id="form-produto" method="post" action="<?php echo $this->basePath() . "/carrinho/adicionar" ?>">
+        <input type="hidden" name="produto" value="<?php echo $produto->getId()?>">
+        <div class="col-md-6 col-sm-12 col-xs-12 product-viewer clearfix">
+
+            <div id="product-image-carousel-container">
+                <div class="elastislide-wrapper elastislide-vertical" style="height: 412px; max-width: 92px;">
+                    <div class="elastislide-carousel">
+                        <ul class="celastislide-list" id="product-carousel" style="height: 412px; transition: all 500ms ease-in-out 0s;">
+                            <?php foreach ($produto->getFoto() as $foto):?>
+                                <li class="active-slide" style="width: 100%; max-width: 92px; max-height: 103px;">
+                                    <a href="<?php echo $this->basePath() . '/arquivos/produtos/' . $produto->getId() . '/' . $foto->getArquivo()?>" data-rel="prettyPhoto[product]">
+                                        <img alt="<?php echo $foto->getArquivo()?>" src="<?php echo $this->basePath() . '/arquivos/produtos/thumbs/' . $produto->getId() . '/' . $foto->getArquivo()?>">
+                                    </a>
+                                </li>
+                            <?php endforeach;?>
+                        </ul>
+                    </div>
+                    <nav>
+                        <span class="elastislide-prev" style="display: none;">Previous</span>
+                        <span class="elastislide-next">Next</span>
+                    </nav>
+                </div><!-- End product-carousel -->
+            </div>
+
+            <div id="product-image-container">
+                <figure>
+                    <div id="mlens_wrapper_0" style="width: 404px;">
+                        <img data-big="<?php echo $this->basePath() . '/arquivos/produtos/' . $produto->getId() . '/' . $produto->getFoto()[0]->getArquivo()?>" id="product-image" alt="<?php echo $foto->getArquivo()?>" src="<?php echo $this->basePath() . '/arquivos/produtos/' . $produto->getId() . '/' . $produto->getFoto()[0]->getArquivo()?>" data-id="mlens_0">
+                        <div class="" style="width: 150px; height: 150px; float: left; display: none; border: 4px solid rgb(153, 153, 153); background-repeat: no-repeat; position: absolute; border-radius: 0px; background-image: url(<?php echo $this->basePath() . '/arquivos/produtos/' . $produto->getId() . '/' . $produto->getFoto()[0]->getArquivo()?>); background-size: auto auto; cursor: none; background-position: -313.158px -87.4158px; left: 123px; top: 9px;" id="mlens_target_0">&nbsp;</div>
+                        <img src="<?php echo $this->basePath() . '/arquivos/produtos/' . $produto->getId() . '/' . $produto->getFoto()[0]->getArquivo()?>" style="display: none; height: auto; max-width: none; width: auto;"></div>
+                    <figcaption class="item-price-container">
+                        <?php
+                        $preco = $this->preco($produto->getId());
+                        if (count($preco)):?>
+                            <?php if (isset($preco['precoNovo'])):?>
+                                <span class="old-price">R$ <?php echo $preco['precoAtual']?></span>
+                                <span class="item-price">R$ <?php echo $preco['precoNovo']?></span>
+                            <?php else:?>
+                                <span class="item-price">R$ <?php echo $preco['precoAtual']?></span>
+                            <?php endif?>
+                        <?php endif?>
+                    </figcaption>
+                </figure>
+            </div><!-- product-image-container -->
+        </div><!-- End .col-md-6 -->
+
+        <div class="col-md-6 col-sm-12 col-xs-12 product">
+            <div class="lg-margin visible-sm visible-xs"></div><!-- Space -->
+            <h1 class="product-name">Samsun Galaxy Ace</h1>
+            <div class="ratings-container">
+                <div class="ratings separator">
+                    <div data-result="70" class="ratings-result" style="width: 65.8px;"></div>
+                </div><!-- End .ratings -->
+										<span class="ratings-amount separator">
+											3 Review(s)
+										</span>
+                <span class="separator">|</span>
+                <a class="rate-this" href="#review">Add Your Review</a>
+            </div><!-- End .rating-container -->
+            <ul class="product-list">
+                <li><span>Availability:</span>In Stock</li>
+                <li><span>Product Code:</span>483512569</li>
+                <li><span>Brand:</span>Apple</li>
+            </ul>
+
+            <?php if (count($atributos)): ?>
+                <hr>
+                <?php foreach ($atributos as $idAtributoTipo => $atributo):?>
+                    <?php if ($idAtributoTipo == 1):?>
+                        <input type="hidden" name="atributo_cor" id="atributo-cor" value="">
+                        <div class="product-color-filter-container">
+                            <span>Select Color:</span>
+                            <div class="xs-margin"></div>
+                            <ul class="filter-color-list clearfix">
+                                <?php foreach ($atributo as $item):?>
+                                    <li><a class="filter-color-box" data-atributo="<?php echo $item->getId()?>" data-bgcolor="#<?php echo $item->getCodigo() ?>" href="javascript:;" title="<?php echo $item->getNome()?>" style="background-color: #<?php echo $item->getCodigo() ?>;"></a></li>
+                                <?php endforeach;?>
+                            </ul>
+                        </div><!-- End .product-color-filter-container-->
+                    <?php elseif ($idAtributoTipo == 2): ?>
+                        <input type="hidden" name="atributo_tamanho" id="atributo-tamanho" value="">
+                        <div class="product-size-filter-container">
+                            <span>Select Size:</span>
+                            <div class="xs-margin"></div>
+                            <ul class="filter-size-list clearfix">
+                                <?php foreach ($atributo as $item):?>
+                                    <li><a href="#"><?php echo $item->getNome()?></a></li>
+                                <?php endforeach;?>
+                            </ul>
+                        </div><!-- End .product-size-filter-container-->
+                    <?php endif?>
+                <?php endforeach;?>
+            <?php endif; ?>
+
+            <hr>
+            <div class="product-add clearfix">
+                <div class="custom-quantity-input">
+                    <input type="text" value="1" name="quantity">
+                    <a class="quantity-btn quantity-input-up" onclick="return false;" href="#"><i class="fa fa-angle-up"></i></a>
+                    <a class="quantity-btn quantity-input-down" onclick="return false;" href="#"><i class="fa fa-angle-down"></i></a>
+                </div>
+                <button type="button" class="btn btn-custom-2 add-cart">ADD TO CART</button>
+            </div><!-- .product-add -->
+            <div class="md-margin"></div><!-- Space -->
+            <div class="product-extra clearfix">
+                <div class="product-extra-box-container clearfix">
+                    <div class="item-action-inner">
+                        <a class="icon-button icon-like" href="#">Favourite</a>
+                        <a class="icon-button icon-compare" href="#">Checkout</a>
+                    </div><!-- End .item-action-inner -->
+                </div>
+                <div class="md-margin visible-xs"></div>
+                <div class="share-button-group">
+                    <!-- AddThis Button BEGIN -->
+                    <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+                        <a class="addthis_button_facebook"></a>
+                        <a class="addthis_button_twitter"></a>
+                        <a class="addthis_button_email"></a>
+                        <a class="addthis_button_print"></a>
+                        <a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
+                    </div>
+                    <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+                    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52b2197865ea0183" type="text/javascript"></script>
+                    <!-- AddThis Button END -->
+                </div><!-- End .share-button-group -->
+            </div>
+        </div><!-- End .col-md-6 -->
+
+    </form>
+</div><!-- End .row -->
+
+<div class="lg-margin2x"></div><!-- End .space -->
+
+<div class="row">
+<div class="col-md-9 col-sm-12 col-xs-12">
+
+    <div class="tab-container left product-detail-tab clearfix">
+        <ul class="nav-tabs" style="height: 474px;">
+            <li class="active"><a data-toggle="tab" href="#overview">Descrição</a></li>
+            <li class=""><a data-toggle="tab" href="#description">Caracteristicas do produto</a></li>
+        </ul>
+        <div class="tab-content clearfix">
+
+            <div id="overview" class="tab-pane active">
+                <?php echo $produto->getDescricao()?>
+            </div><!-- End .tab-pane -->
+
+            <div id="description" class="tab-pane">
+                <p>Veja abaixo as características do produto:</p>
+                <ul class="product-details-list">
+                    <?php
+                    if (count($produto->getCaracteristica())):
+                        foreach ($produto->getCaracteristica() as $caracteristica):?>
+                            <li><?php echo $caracteristica->getCaracteristica()->getNome()?>: <?php echo $caracteristica->getValor()?></li>
+                        <?php
+                        endforeach;
+                    endif;
+                    ?>
+                </ul>
+            </div><!-- End .tab-pane -->
+
+        </div><!-- End .tab-content -->
+    </div><!-- End .tab-container -->
+    <div class="lg-margin visible-xs"></div>
+</div><!-- End .col-md-9 -->
+<div class="lg-margin2x visible-sm visible-xs"></div><!-- Space -->
+<div class="col-md-3 col-sm-12 col-xs-12 sidebar">
+    <div class="widget related">
+        <h3>Related</h3>
+
+        <div class="related-slider flexslider sidebarslider">
+
+            <div class="flex-viewport" style="overflow: hidden; position: relative; height: 250px;"><ul class="related-list clearfix" style="width: 1000%; transition-duration: 0.6s; transform: translate3d(-789px, 0px, 0px);"><li class="clone" aria-hidden="true" style="float: left; display: block; width: 263px;">
+
+                        <div class="related-product clearfix">
+                            <figure>
+                                <img alt="item2" src="images/products/thumbnails/placeholder.jpg" draggable="false">
+                            </figure>
+                            <h5><a href="#">Gap Graphic Cuffed</a></h5>
+                            <div class="ratings-container">
+                                <div class="ratings">
+                                    <div data-result="84" class="ratings-result" style="width: 78.96px;"></div>
+                                </div><!-- End .ratings -->
+                            </div><!-- End .rating-container -->
+                            <div class="related-price">$17</div><!-- End .related-price -->
+                        </div><!-- End .related-product -->
+
+                        <div class="related-product clearfix">
+                            <figure>
+                                <img alt="item4" src="images/products/thumbnails/placeholder.jpg" draggable="false">
+                            </figure>
+                            <h5><a href="#">Women's Lauren Dress</a></h5>
+                            <div class="ratings-container">
+                                <div class="ratings">
+                                    <div data-result="84" class="ratings-result" style="width: 78.96px;"></div>
+                                </div><!-- End .ratings -->
+                            </div><!-- End .rating-container -->
+                            <div class="related-price">$30</div><!-- End .related-price -->
+                        </div><!-- End .related-product -->
+                    </li>
+                    <li class="" style="float: left; display: block; width: 263px;">
+                        <div class="related-product clearfix">
+                            <figure>
+                                <img alt="item1" src="images/products/thumbnails/placeholder.jpg" draggable="false">
+                            </figure>
+                            <h5><a href="#">Jacket Suiting Blazer</a></h5>
+                            <div class="ratings-container">
+                                <div class="ratings">
+                                    <div data-result="84" class="ratings-result" style="width: 78.96px;"></div>
+                                </div><!-- End .ratings -->
+                            </div><!-- End .rating-container -->
+                            <div class="related-price">$40</div><!-- End .related-price -->
+                        </div><!-- End .related-product -->
+
+                        <div class="related-product clearfix">
+                            <figure>
+                                <img alt="item2" src="images/products/thumbnails/placeholder.jpg" draggable="false">
+                            </figure>
+                            <h5><a href="#">Gap Graphic Cuffed</a></h5>
+                            <div class="ratings-container">
+                                <div class="ratings">
+                                    <div data-result="84" class="ratings-result" style="width: 78.96px;"></div>
+                                </div><!-- End .ratings -->
+                            </div><!-- End .rating-container -->
+                            <div class="related-price">18$</div><!-- End .related-price -->
+                        </div><!-- End .related-product -->
+
+                        <div class="related-product clearfix">
+                            <figure>
+                                <img alt="item3" src="images/products/thumbnails/placeholder.jpg" draggable="false">
+                            </figure>
+                            <h5><a href="#">Women's Lauren Dress</a></h5>
+                            <div class="ratings-container">
+                                <div class="ratings">
+                                    <div data-result="84" class="ratings-result" style="width: 78.96px;"></div>
+                                </div><!-- End .ratings -->
+                            </div><!-- End .rating-container -->
+                            <div class="related-price">$30</div><!-- End .related-price -->
+                        </div><!-- End .related-product -->
+                    </li>
+                    <li style="float: left; display: block; width: 263px;" class="">
+                        <div class="related-product clearfix">
+                            <figure>
+                                <img alt="item4" src="images/products/thumbnails/placeholder.jpg" draggable="false">
+                            </figure>
+                            <h5><a href="#">Swiss Mobile Phone</a></h5>
+                            <div class="ratings-container">
+                                <div class="ratings">
+                                    <div data-result="64" class="ratings-result" style="width: 60.16px;"></div>
+                                </div><!-- End .ratings -->
+                            </div><!-- End .rating-container -->
+                            <div class="related-price">$39</div><!-- End .related-price -->
+                        </div><!-- End .related-product -->
+
+                        <div class="related-product clearfix">
+                            <figure>
+                                <img alt="item5" src="images/products/thumbnails/placeholder.jpg" draggable="false">
+                            </figure>
+                            <h5><a href="#">Zwinzed HeadPhones</a></h5>
+                            <div class="ratings-container">
+                                <div class="ratings">
+                                    <div data-result="94" class="ratings-result" style="width: 88.36px;"></div>
+                                </div><!-- End .ratings -->
+                            </div><!-- End .rating-container -->
+                            <div class="related-price">$18.99</div><!-- End .related-price -->
+                        </div><!-- End .related-product -->
+
+                        <div class="related-product clearfix">
+                            <figure>
+                                <img alt="item6" src="images/products/thumbnails/placeholder.jpg" draggable="false">
+                            </figure>
+                            <h5><a href="#">Kless Man Suit</a></h5>
+                            <div class="ratings-container">
+                                <div class="ratings">
+                                    <div data-result="74" class="ratings-result" style="width: 69.56px;"></div>
+                                </div><!-- End .ratings -->
+                            </div><!-- End .rating-container -->
+                            <div class="related-price">$99</div><!-- End .related-price -->
+                        </div><!-- End .related-product -->
+                    </li>
+                    <li style="float: left; display: block; width: 263px;" class="flex-active-slide">
+
+                        <div class="related-product clearfix">
+                            <figure>
+                                <img alt="item2" src="images/products/thumbnails/placeholder.jpg" draggable="false">
+                            </figure>
+                            <h5><a href="#">Gap Graphic Cuffed</a></h5>
+                            <div class="ratings-container">
+                                <div class="ratings">
+                                    <div data-result="84" class="ratings-result" style="width: 78.96px;"></div>
+                                </div><!-- End .ratings -->
+                            </div><!-- End .rating-container -->
+                            <div class="related-price">$17</div><!-- End .related-price -->
+                        </div><!-- End .related-product -->
+
+                        <div class="related-product clearfix">
+                            <figure>
+                                <img alt="item4" src="images/products/thumbnails/placeholder.jpg" draggable="false">
+                            </figure>
+                            <h5><a href="#">Women's Lauren Dress</a></h5>
+                            <div class="ratings-container">
+                                <div class="ratings">
+                                    <div data-result="84" class="ratings-result" style="width: 78.96px;"></div>
+                                </div><!-- End .ratings -->
+                            </div><!-- End .rating-container -->
+                            <div class="related-price">$30</div><!-- End .related-price -->
+                        </div><!-- End .related-product -->
+                    </li>
+                    <li class="clone" aria-hidden="true" style="float: left; display: block; width: 263px;">
+                        <div class="related-product clearfix">
+                            <figure>
+                                <img alt="item1" src="images/products/thumbnails/placeholder.jpg" draggable="false">
+                            </figure>
+                            <h5><a href="#">Jacket Suiting Blazer</a></h5>
+                            <div class="ratings-container">
+                                <div class="ratings">
+                                    <div data-result="84" class="ratings-result" style="width: 78.96px;"></div>
+                                </div><!-- End .ratings -->
+                            </div><!-- End .rating-container -->
+                            <div class="related-price">$40</div><!-- End .related-price -->
+                        </div><!-- End .related-product -->
+
+                        <div class="related-product clearfix">
+                            <figure>
+                                <img alt="item2" src="images/products/thumbnails/placeholder.jpg" draggable="false">
+                            </figure>
+                            <h5><a href="#">Gap Graphic Cuffed</a></h5>
+                            <div class="ratings-container">
+                                <div class="ratings">
+                                    <div data-result="84" class="ratings-result" style="width: 78.96px;"></div>
+                                </div><!-- End .ratings -->
+                            </div><!-- End .rating-container -->
+                            <div class="related-price">18$</div><!-- End .related-price -->
+                        </div><!-- End .related-product -->
+
+                        <div class="related-product clearfix">
+                            <figure>
+                                <img alt="item3" src="images/products/thumbnails/placeholder.jpg" draggable="false">
+                            </figure>
+                            <h5><a href="#">Women's Lauren Dress</a></h5>
+                            <div class="ratings-container">
+                                <div class="ratings">
+                                    <div data-result="84" class="ratings-result" style="width: 78.96px;"></div>
+                                </div><!-- End .ratings -->
+                            </div><!-- End .rating-container -->
+                            <div class="related-price">$30</div><!-- End .related-price -->
+                        </div><!-- End .related-product -->
+                    </li></ul></div><ul class="flex-direction-nav"><li><a href="#" class="flex-prev"></a></li><li><a href="#" class="flex-next"></a></li></ul></div><!-- End .related-slider -->
+    </div><!-- End .widget -->
+
+</div><!-- End .col-md-4 -->
+</div><!-- End .row -->
+<div class="lg-margin2x"></div><!-- Space -->
+<div class="purchased-items-container carousel-wrapper">
+<header class="content-title">
+    <div class="title-bg">
+        <h2 class="title">Also Purchased</h2>
+    </div><!-- End .title-bg -->
+    <p class="title-desc">Note the similar products - after buying for more than $500 you can get a discount.</p>
+</header>
+
+<div class="carousel-controls">
+    <div class="carousel-btn carousel-btn-prev" id="purchased-items-slider-prev"></div><!-- End .carousel-prev -->
+    <div class="carousel-btn carousel-btn-next carousel-space" id="purchased-items-slider-next"></div><!-- End .carousel-next -->
+</div><!-- End .carousel-controllers -->
+<div class="purchased-items-slider owl-carousel owl-theme" style="display: block; opacity: 1;">
+<div class="owl-wrapper-outer autoHeight" style="height: 418px;"><div class="owl-wrapper" style="width: 3420px; left: 0px; display: block; transition: all 800ms ease 0s; transform: translate3d(-285px, 0px, 0px);"><div class="owl-item" style="width: 285px;"><div class="item">
+
+                <div class="item-image-container">
+                    <figure>
+                        <a href="product.html">
+                            <img class="item-image" alt="item3" src="images/products/placeholder.jpg">
+                            <img class="item-image-hover" alt="item3 Hover" src="images/products/placeholder-hover.jpg">
+                        </a>
+                    </figure>
+                    <div class="item-price-container">
+                        <span class="item-price">$160<span class="sub-price">.99</span></span>
+                    </div>
+                    <span class="new-rect">New</span>
+                    <span class="discount-rect">-10%</span>
+                </div><!-- End .item-image -->
+                <div class="item-meta-container">
+                    <div class="ratings-container">
+                        <div class="ratings">
+                            <div data-result="95" class="ratings-result" style="width: 89.3px;"></div>
+                        </div><!-- End .ratings -->
+                                                    <span class="ratings-amount">
+                                                        1 Reviews
+                                                    </span>
+                    </div><!-- End .rating-container -->
+                    <h3 class="item-name"><a href="product.html">Lorem Ipsum Dolla</a></h3>
+                    <div class="item-action">
+                        <a class="item-add-btn" href="#">
+                            <span class="icon-cart-text">Add to Cart</span>
+                        </a>
+                        <div class="item-action-inner">
+                            <a class="icon-button icon-like" href="#">Favourite</a>
+                            <a class="icon-button icon-compare" href="#">Checkout</a>
+                        </div><!-- End .item-action-inner -->
+                    </div><!-- End .item-action -->
+                </div><!-- End .item-meta-container -->
+            </div></div><div class="owl-item" style="width: 285px;"><div class="item">
+
+                <div class="item-image-container">
+                    <figure>
+                        <a href="product.html">
+                            <img class="item-image" alt="Phone 3" src="images/products/placeholder.jpg">
+                            <img class="item-image-hover" alt="Phone 3 Hover" src="images/products/placeholder-hover.jpg">
+                        </a>
+                    </figure>
+                    <div class="item-price-container">
+                        <span class="item-price">$99<span class="sub-price">.75</span></span>
+                    </div>
+                </div><!-- End .item-image -->
+                <div class="item-meta-container">
+                    <div class="ratings-container">
+
+                    </div><!-- End .rating-container -->
+                    <h3 class="item-name"><a href="product.html">Lorem Ipsum Dolla</a></h3>
+                    <div class="item-action">
+                        <a class="item-add-btn" href="#">
+                            <span class="icon-cart-text">Add to Cart</span>
+                        </a>
+                        <div class="item-action-inner">
+                            <a class="icon-button icon-like" href="#">Favourite</a>
+                            <a class="icon-button icon-compare" href="#">Checkout</a>
+                        </div><!-- End .item-action-inner -->
+                    </div><!-- End .item-action -->
+                </div><!-- End .item-meta-container -->
+            </div></div><div class="owl-item" style="width: 285px;"><div class="item">
+
+                <div class="item-image-container">
+                    <figure>
+                        <a href="product.html">
+                            <img class="item-image" alt="Headphones 1" src="images/products/placeholder.jpg">
+                            <img class="item-image-hover" alt="Headphones 1 Hover" src="images/products/placeholder-hover.jpg">
+                        </a>
+                    </figure>
+                    <div class="item-price-container">
+                        <span class="item-price">$79<span class="sub-price">.99</span></span>
+                    </div>
+                    <span class="new-rect">New</span>
+                </div><!-- End .item-image -->
+                <div class="item-meta-container">
+                    <div class="ratings-container">
+
+                    </div><!-- End .rating-container -->
+                    <h3 class="item-name"><a href="product.html">Lorem Ipsum Dolla</a></h3>
+                    <div class="item-action">
+                        <a class="item-add-btn" href="#">
+                            <span class="icon-cart-text">Add to Cart</span>
+                        </a>
+                        <div class="item-action-inner" style="visibility: hidden; overflow: hidden; width: 0px;">
+                            <a class="icon-button icon-like" href="#">Favourite</a>
+                            <a class="icon-button icon-compare" href="#">Checkout</a>
+                        </div><!-- End .item-action-inner -->
+                    </div><!-- End .item-action -->
+                </div><!-- End .item-meta-container -->
+            </div></div><div class="owl-item" style="width: 285px;"><div class="item">
+
+                <div class="item-image-container">
+                    <figure>
+                        <a href="product.html">
+                            <img class="item-image" alt="item3" src="images/products/placeholder.jpg">
+                            <img class="item-image-hover" alt="item3 Hover" src="images/products/placeholder-hover.jpg">
+                        </a>
+                    </figure>
+                    <div class="item-price-container">
+                        <span class="old-price">$300</span>
+                        <span class="item-price">$175</span>
+                    </div>
+                    <span class="new-rect">New</span>
+                    <span class="discount-rect">-35%</span>
+                </div><!-- End .item-image -->
+                <div class="item-meta-container">
+                    <div class="ratings-container">
+                        <div class="ratings">
+                            <div data-result="70" class="ratings-result" style="width: 65.8px;"></div>
+                        </div><!-- End .ratings -->
+                                                    <span class="ratings-amount">
+                                                        7 Reviews
+                                                    </span>
+                    </div><!-- End .rating-container -->
+                    <h3 class="item-name"><a href="product.html">Lorem Ipsum Dolla</a></h3>
+                    <div class="item-action">
+                        <a class="item-add-btn" href="#">
+                            <span class="icon-cart-text">Add to Cart</span>
+                        </a>
+                        <div class="item-action-inner">
+                            <a class="icon-button icon-like" href="#">Favourite</a>
+                            <a class="icon-button icon-compare" href="#">Checkout</a>
+                        </div><!-- End .item-action-inner -->
+                    </div><!-- End .item-action -->
+                </div><!-- End .item-meta-container -->
+            </div></div><div class="owl-item" style="width: 285px;"><div class="item">
+
+                <div class="item-image-container">
+                    <figure>
+                        <a href="product.html">
+                            <img class="item-image" alt="item3" src="images/products/placeholder.jpg">
+                            <img class="item-image-hover" alt="item3 Hover" src="images/products/placeholder-hover.jpg">
+                        </a>
+                    </figure>
+                    <div class="item-price-container">
+                        <span class="item-price">$180<span class="sub-price">.99</span></span>
+                    </div>
+                    <span class="new-rect">New</span>
+                </div><!-- End .item-image -->
+                <div class="item-meta-container">
+                    <div class="ratings-container">
+                        <div class="ratings">
+                            <div data-result="95" class="ratings-result" style="width: 89.3px;"></div>
+                        </div><!-- End .ratings -->
+                                                    <span class="ratings-amount">
+                                                        2 Reviews
+                                                    </span>
+                    </div><!-- End .rating-container -->
+                    <h3 class="item-name"><a href="product.html">Lorem Ipsum Dolla</a></h3>
+                    <div class="item-action">
+                        <a class="item-add-btn" href="#">
+                            <span class="icon-cart-text">Add to Cart</span>
+                        </a>
+                        <div class="item-action-inner">
+                            <a class="icon-button icon-like" href="#">Favourite</a>
+                            <a class="icon-button icon-compare" href="#">Checkout</a>
+                        </div><!-- End .item-action-inner -->
+                    </div><!-- End .item-action -->
+                </div><!-- End .item-meta-container -->
+            </div></div><div class="owl-item" style="width: 285px;"><div class="item">
+
+                <div class="item-image-container">
+                    <figure>
+                        <a href="product.html">
+                            <img class="item-image" alt="item3" src="images/products/placeholder.jpg">
+                            <img class="item-image-hover" alt="item3 Hover" src="images/products/placeholder-hover.jpg">
+                        </a>
+                    </figure>
+                    <div class="item-price-container">
+                        <span class="item-price">$89<span class="sub-price">.75</span></span>
+                    </div>
+                    <span class="new-rect">New</span>
+                </div><!-- End .item-image -->
+                <div class="item-meta-container">
+                    <div class="ratings-container">
+                        <div class="ratings">
+                            <div data-result="95" class="ratings-result" style="width: 89.3px;"></div>
+                        </div><!-- End .ratings -->
+                                                    <span class="ratings-amount" style="display: none;">
+                                                        4 Reviews
+                                                    </span>
+                    </div><!-- End .rating-container -->
+                    <h3 class="item-name"><a href="product.html">Lorem Ipsum Dolla</a></h3>
+                    <div class="item-action">
+                        <a class="item-add-btn" href="#">
+                            <span class="icon-cart-text">Add to Cart</span>
+                        </a>
+                        <div class="item-action-inner" style="visibility: hidden; overflow: hidden; width: 0px;">
+                            <a class="icon-button icon-like" href="#">Favourite</a>
+                            <a class="icon-button icon-compare" href="#">Checkout</a>
+                        </div><!-- End .item-action-inner -->
+                    </div><!-- End .item-action -->
+                </div><!-- End .item-meta-container -->
+            </div></div></div></div><!-- End .item -->
+
+<!-- End .item -->
+<!-- End .item -->
+
+<!-- End .item -->
+
+<!-- End .item -->
+
+<!-- End .item -->
+
+</div><!--purchased-items-slider -->
+</div><!-- End .purchased-items-container -->
+
+</div><!-- End .col-md-12 -->
+</div><!-- End .row -->
+</div><!-- End .container -->
+
+</section>
+<!-- Scripts -->
+<script src="/skin/frontend/js/produto/detalhe.js" type="text/javascript"></script>

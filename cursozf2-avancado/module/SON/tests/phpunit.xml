@@ -1,0 +1,30 @@
+<phpunit
+    bootstrap="Bootstrap.php"
+    colors="true"
+    backupGlobals="false"
+>
+<!-- Mudar os nomes do Módulo -->
+    <testsuites>
+        <testsuite name="SON Test">
+            <directory>./</directory>
+        </testsuite>
+    </testsuites>
+
+    <!-- Code Coverage Configuration -->
+    <filter>
+        <whitelist>
+            <directory suffix=".php">../</directory>
+            <exclude>
+                <file>../Module.php</file>
+                <directory>../languageArray</directory>
+                <directory>../config</directory>
+                <directory>../tests</directory>
+            </exclude>
+        </whitelist>
+    </filter>
+
+    <logging>
+        <log type="coverage-html" target="_reports/coverage" title="Modulo SON" charset="UTF-8" yui="true" highlight="true" lowUpperBound="35" highLowerBound="90"/>
+        <log type="testdox-text" target="_reports/testdox/executed.txt"/>
+    </logging>
+</phpunit>

@@ -1,0 +1,79 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<a href="<?php echo $this->url('admin/default', array('controller' => 'produto'))?>" class="btn btn-primary">Produto</a>
+
+	</div>
+
+	<div class="panel-body">
+		<p>
+		<b>Produto:</b> <i><?php echo $dadosEstoque['0']->getProduto()->getNome()?></i><br />
+		<?php if (count($dadosEstoque)):?>
+			<?php foreach ($dadosEstoque as $estoque):?>
+				<div>
+					<b>Estoque atual <?php echo $estoque->getAtributo()->getAtributoTipo()->getNome()?> <?php echo $estoque->getAtributo()->getNome()?>:</b> <i><?php echo $estoque->getQtd()?></i>
+					<a href="<?php echo $this->url('admin/default', array('controller' => $controller, 'action' => 'cadastrar', 'id' => $estoque->getId()))?>" class="btn btn-primary">Novo estoque log</a>
+				</div>
+			<?php endforeach;?>
+		<?php endif;?>
+		</p>
+		<form action="" name="form" method="get">
+			<table class="table">
+				<thead>
+					<tr>
+						<td style="width: 50px;">ID</td>
+						<td>Atributo</td>
+						<td>QTD</td>
+						<td>Tipo</td>
+						<td>Dta inc</td>
+						<td style="width: 70px;">Opções</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><input style="width: 40px;" type="text" name="id" value="<?php echo isset($filtro['id']) ? $filtro['id'] : ""?>"></td>
+						<td></td>
+						<td><input type="text" name="nome" value="<?php echo isset($filtro['qtd']) ? $filtro['qtd'] : ""?>"></td>
+						<td><input type="text" name="nome" value="<?php echo isset($filtro['tipo']) ? $filtro['tipo'] : ""?>"></td>
+						<td></td>
+						<td><input type="submit" value="Filtrar"></td>
+					</tr>
+					<?php
+					if (count($data)):
+						foreach ($data as $item):?>
+					<tr>
+						<td><?php echo $item->getId()?></td>
+						<td><?php echo $item->getEstoque()->getAtributo()->getAtributoTipo()->getNome() . " - " . $item->getEstoque()->getAtributo()->getNome()?></td>
+						<td><?php echo $item->getQtd()?></td>
+						<td><?php
+						switch ($item->getTipo()):
+							case "1" :
+								echo "Entrada";
+								break;
+							case "2" :
+								echo "Saída";
+								break;
+							case "3" :
+								echo "Estorno entrada";
+								break;
+							case "4" :
+								echo "Estorno saída";
+								break;
+						endswitch;
+						?></td>
+						<td><?php echo $item->getDtaInc()->format('d/m/Y H:i')?></td>
+						<td>
+							<a href="<?php echo $this->url('admin/default', array('controller' => $controller, 'action' => 'editar', 'id' => $item->getId()))?>"><i class="glyphicon glyphicon-pencil"></a></i>
+							<a href="<?php echo $this->url('admin/default', array('controller' => $controller, 'action' => 'delete', 'id' => $item->getId()))?>" onclick="return confirm('Tem certeza que deseja excluir este registro?')"><i class="glyphicon glyphicon-remove"></a></i>
+						</td>
+					</tr>
+					<?php
+						endforeach;
+					endif;?>
+				</tbody>
+			</table>
+		</form>
+	</div>
+	<div class="panel-footer" style="text-align: center;">
+		<?php echo $this->paginationControl($data, 'Sliding', 'partials/paginator.phtml')?>
+	</div>
+</div>

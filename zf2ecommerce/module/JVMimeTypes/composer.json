@@ -1,0 +1,29 @@
+{
+    "name": "jaimevalasek/jv-mime-types",
+    "description": "A generic module MimeTypes ZF2 mainly used by module JVUpload.",
+    "license": "BSD-3-Clause",
+    "type": "library",
+    "keywords": [
+        "zf2", "mime-types", "jaimevalasek"
+    ],
+    "homepage": "https://github.com/jaimevalasek/JVMimeTypes",
+    "authors": [
+        {
+            "name": "Jaime Marcelo Valasek",
+            "email": "jaime.valasek@gmail.com",
+            "homepage": "http://valasek.com.br"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "zendframework/zendframework": "2.*"
+    },    
+    "autoload": {
+        "psr-0": {
+            "JVMimeTypes": "src/"
+        },
+        "classmap": [
+            "./Module.php"
+        ]
+    }
+}

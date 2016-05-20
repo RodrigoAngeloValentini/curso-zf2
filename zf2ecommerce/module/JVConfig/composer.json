@@ -1,0 +1,26 @@
+{
+    "name": "jaimevalasek/jv-config",
+    "description": "Use this module to generate the configurations of the modules jaimevalasek/JV.*.",
+    "license": "BSD-3-Clause",
+    "type": "library",
+    "keywords": [
+        "zf2", "jv-config", "jaimevalasek"
+    ],
+    "homepage": "https://github.com/jaimevalasek/JVConfig",
+    "authors": [
+        {
+            "name": "Jaime Marcelo Valasek",
+            "email": "jaime.valasek@gmail.com",
+            "homepage": "http://valasek.com.br"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "zendframework/zendframework": "2.*"
+    },    
+    "autoload": {
+        "classmap": [
+            "./Module.php"
+        ]
+    }
+}

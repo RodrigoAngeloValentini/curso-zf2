@@ -1,0 +1,39 @@
+<div class="panel panel-default">
+	<div class="panel-heading">Característica Perfil</div>
+	<?php echo $this->form()->openTag($form)?>
+		<div class="panel-body">
+
+			<div class="form-group">
+				<label for="nome"><?php echo $this->formLabel($form->get('nome'))?></label>
+				<?php echo $this->formElement($form->get('nome'))?>
+				<?php echo $this->formElementErrors($form->get('nome'))?>
+			</div>
+
+			<div class="form-group">
+				<label for="status"><?php echo $this->formLabel($form->get('status'))?></label>
+				<?php echo $this->formElement($form->get('status'))?>
+				<?php echo $this->formElementErrors($form->get('status'))?>
+			</div>
+
+			<?php if (count($caracteristicas)):?>
+			<div class="form-group">
+				<div class="panel panel-primary" style="width: 700px">
+			  		<div class="panel-heading">Características</div>
+					<div class="panel-body">
+						<?php foreach ($caracteristicas as $caracteristica):?>
+				    	<label for="atributo_<?php echo $caracteristica->getId()?>">
+							<input type="checkbox" id="caracterisca_<?php echo $caracteristica->getId()?>" name="caracteristica[<?php echo $caracteristica->getId()?>]" value="<?php echo $caracteristica->getId()?>" <?php if (in_array($caracteristica->getId(), $arrCaracteristicas)):?>checked="checked"<?php endif;?> /> <?php echo $caracteristica->getNome()?>
+						</label>
+						<?php endforeach;?>
+		  			</div>
+				</div>
+			</div>
+			<?php endif;?>
+
+		</div>
+		<div class="panel-footer">
+			<input type="button" onclick="document.location.href='/admin/<?php echo $controller?>'" value="Voltar">
+			<input type="submit" value="Salvar">
+		</div>
+	<?php echo $this->form()->closeTag($form)?>
+</div>

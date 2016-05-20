@@ -1,0 +1,29 @@
+<div class="panel panel-info">
+	<div class="panel-heading">
+		<h2>Página do usuário</h2>
+	</div>
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-md-8">
+				<h3>Meus dados de acesso</h3>
+				<ul class="list-group">
+					<li><a href="<?php echo $this->url('alterar_dados')?>">alterar</a></li>
+					<li>Id: <?php echo $this->useridentity()->getId()?></li>
+					<li>Nome: <?php echo $this->useridentity()->getNome()?></li>
+					<li>Email: <?php echo $this->useridentity()->getEmail()?></li>
+					<li>Data de cadastro: <?php echo $this->useridentity()->getDtaInc()->format('d/m/Y H:i')?></li>
+					<li>Perfil: <?php echo $this->useridentity()->getPerfil()->getNome()?></li>
+				</ul>
+				<h3>Dados pessoais</h3>
+				<ul class="list-group">
+					<li><a href="<?php echo $this->url('dados_pessoais')?>">alterar</a></li>
+					<li>RG: <?php echo $dadosPessoais->getRg()?></li>
+					<li>CPF: <?php echo $dadosPessoais->getCpf()?></li>
+					<li>Telefone: <?php echo $dadosPessoais->getTelefone()?></li>
+					<li>Celular: <?php echo $dadosPessoais->getCelular()?></li>
+				</ul>
+			</div>
+			<div class="col-md-4">teste</div>
+		</div>
+	</div>
+</div>

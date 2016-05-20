@@ -1,0 +1,53 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<a href="<?php echo $this->url('admin/default', array('controller' => $controller, 'action' => 'cadastrar'))?>" class="btn btn-primary">Novo transporte</a>
+	</div>
+	
+	<div class="panel-body">
+		<form action="" name="form" method="get">
+			<table class="table">
+				<thead>
+					<tr>
+						<td style="width: 50px;">ID</td>
+						<td>Nome</td>
+						<td>Status</td>
+						<td style="width: 70px;">Opções</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><input style="width: 40px;" type="text" name="id" value="<?php echo isset($filtro['id']) ? $filtro['id'] : ""?>"></td>
+						<td><input type="text" name="nome" value="<?php echo isset($filtro['nome']) ? $filtro['nome'] : ""?>"></td>
+						<td><input type="text" name="status" value="<?php echo isset($filtro['status']) ? $filtro['status'] : ""?>"></td>
+						<td><input type="submit" value="Filtrar"></td>
+					</tr>
+					<?php 
+					if (count($data)):
+						foreach ($data as $item):?>
+					<tr>
+						<td><?php echo $item->getId()?></td>
+						<td><?php echo $item->getNome()?></td>
+						<td><?php 
+						switch ($item->getStatus()):
+							case "1" : echo "Ativo";
+								break;
+							case "0" : echo "Inativo";
+								break;
+						endswitch;
+						?></td>
+						<td>
+							<a href="<?php echo $this->url('admin/default', array('controller' => $controller, 'action' => 'editar', 'id' => $item->getId()))?>"><i class="glyphicon glyphicon-pencil"></a></i>
+							<a href="<?php echo $this->url('admin/default', array('controller' => $controller, 'action' => 'delete', 'id' => $item->getId()))?>" onclick="return confirm('Tem certeza que deseja excluir este registro?')"><i class="glyphicon glyphicon-remove"></a></i>
+						</td>
+					</tr>
+					<?php 
+						endforeach;
+					endif;?>
+				</tbody>
+			</table>
+		</form>
+	</div>
+	<div class="panel-footer" style="text-align: center;">
+		<?php echo $this->paginationControl($data, 'Sliding', 'partials/paginator.phtml')?>
+	</div>
+</div>

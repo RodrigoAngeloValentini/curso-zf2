@@ -1,0 +1,29 @@
+{
+    "name": "jaimevalasek/jv-easy-php-thumbnail",
+    "description": "A generic module to generate thumbnail images for ZF2. Using this module you can generate thumbnails of images and display them on the site with an option to cache or use to generate and save in a folder.",
+    "license": "BSD-3-Clause",
+    "type": "library",
+    "keywords": [
+        "zf2"
+    ],
+    "homepage": "https://github.com/jaimevalasek/JVEasyPhpThumbnail",
+    "authors": [
+        {
+            "name": "Jaime Marcelo Valasek",
+            "email": "jaime.valasek@gmail.com",
+            "homepage": "http://valasek.com.br"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "zendframework/zendframework": "2.*"
+    },    
+    "autoload": {
+        "psr-0": {
+            "JVEasyPhpThumbnail": "src/"
+        },
+        "classmap": [
+            "./Module.php"
+        ]
+    }
+}

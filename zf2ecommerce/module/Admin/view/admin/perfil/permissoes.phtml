@@ -1,0 +1,26 @@
+<div class="panel panel-default">
+	<div>
+		<span style="line-height: 35px; font-size: 24px; font-weight: bold;">Gerenciar permissões do perfil [ <?php echo $perfil->getNome()?> ]</span>
+		<a style="float: right;" href="<?php echo $this->url('admin/default', array('controller' => 'perfil', 'action' => 'index'))?>" class="btn btn-primary">Voltar</a>
+		<div style="clear: both;"></div>
+	</div>
+	
+	<?php if (count($resources)):?>
+	<form action="" method="post" name="form1">
+		<ul>
+			<?php foreach ($resources as $resource):?>
+			<li style="float: left; width: 360px; list-style: none;">
+				<label>
+					<input type="checkbox" name="resource[]" id="resource_<?php echo $resource->getId()?>" value="<?php echo $resource->getId()?>" 
+					<?php if (in_array($resource->getId(), $arrayResourcesSelecionados)):?> checked="checked" <?php endif?>
+					<?php if (in_array($resource->getId(), $arrayResourcesOutroPerfil)):?> disabled="disabled" <?php endif?>>
+					<span class="label <?php echo isset($arrayPerfilClass[$arrayPerfil[$resource->getId()]]) ? $arrayPerfilClass[$arrayPerfil[$resource->getId()]] : 'label-default'?>"><?php echo $resource->getNome()?></span>
+				</label>
+			</li>
+			<?php endforeach;?>
+		</ul>
+		<button>Salvar</button>
+		<div style="clear: both;"></div>
+	</form>
+	<?php endif?>
+</div>

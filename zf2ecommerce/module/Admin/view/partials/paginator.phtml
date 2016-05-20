@@ -1,0 +1,34 @@
+<?php
+
+$uri = $this->uri();
+$uriQuery = "";
+
+if (count($uri))
+{
+	foreach ($uri as $id => $val)
+	{
+		if ($id != "pagina")
+		{
+			$uriQuery .= "&" . $id . "=" . $val;
+		}
+	}
+}
+?>
+
+<ul class="pagination">
+	<?php if (isset($this->previous)):?>
+		<li><a href="?pagina=<?php echo $this->previous . $uriQuery?>">Anterior</a></li>
+	<?php endif;?>
+	
+	<?php foreach ($this->pagesInRange as $item):?>
+		<?php if ($this->current == $item):?>
+			<li class="disabled"><a href="javascript:void()"><?php echo $item?></a></li>
+		<?php else:?>
+			<li class="active"><a href="?pagina=<?php echo $item . $uriQuery?>"><?php echo $item?></a></li>
+		<?php endif;?>
+	<?php endforeach;?>
+
+	<?php if (isset($this->next)):?>
+		<li><a href="?pagina=<?php echo $this->next . $uriQuery?>">Próximo</a></li>
+	<?php endif;?>
+</ul>

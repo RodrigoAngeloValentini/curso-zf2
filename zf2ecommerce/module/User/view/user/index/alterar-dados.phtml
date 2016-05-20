@@ -1,0 +1,41 @@
+					<div class="col-md-12">
+						<header class="content-title">
+							<h1 class="title">Editar os meus dados</h1>
+						</header>
+						<form action="<?php echo $this->url('alterar_dados') ?>" id="register-form" method="post" name="register-form">
+        				<div class="row">
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<fieldset>
+									<div class="input-group">
+										<span class="input-group-addon"><span class="input-icon input-icon-user"></span><span class="input-text">Nome &#42;</span></span>
+										<?php echo $this->formElement($form->get('usuario_nome'))?>
+										<?php echo $this->formElementErrors($form->get('usuario_nome'))?>
+									</div>
+									<div class="input-group">
+										<span class="input-group-addon"><span class="input-icon input-icon-email"></span><span class="input-text">Email &#42;</span></span>
+										<?php echo $this->formElement($form->get('email'))?>
+										<?php echo $this->formElementErrors($form->get('email'))?>
+									</div>
+									<h2 class="sub-title">Defina uma senha</h2>
+									<div class="input-group">
+										<span class="input-group-addon"><span class="input-icon input-icon-postcode"></span><span class="input-text">Senha&#42;</span></span>
+										<?php echo $this->formElement($form->get('senha'))?>
+										<?php echo $this->formElementErrors($form->get('senha'))?>
+									</div>
+									<div class="input-group">
+										<span class="input-group-addon"><span class="input-icon input-icon-postcode"></span><span class="input-text">Confirme a Senha&#42;</span></span>
+										<?php echo $this->formElement($form->get('confirme_senha'))?>
+										<?php echo $this->formElementErrors($form->get('confirme_senha'))?>
+									</div>
+								</fieldset>
+							</div><!-- End .col-md-6 -->
+        				</div><!-- End .row -->
+						
+						<div class="row">
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<input type="submit" value="Salvar" class="btn btn-custom-2 btn-lg md-margin">
+							</div><!-- End .col-md-6 -->
+						</div><!-- End .row -->
+        				</form>
+        			</div><!-- End .col-md-12 -->
+        		</div><!-- End .row -->

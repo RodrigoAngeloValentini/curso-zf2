@@ -1,0 +1,29 @@
+{
+    "name": "jaimevalasek/jv-kart",
+    "description": "A generic module Shopping Cart for ZF2.",
+    "license": "BSD-3-Clause",
+    "type": "library",
+    "keywords": [
+        "zf2", "jv-kart", "shopping cart", "jaimevalasek"
+    ],
+    "homepage": "https://github.com/jaimevalasek/JVKart",
+    "authors": [
+        {
+            "name": "Jaime Marcelo Valasek",
+            "email": "jaime.valasek@gmail.com",
+            "homepage": "http://valasek.com.br"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "zendframework/zendframework": "2.*"
+    },    
+    "autoload": {
+        "psr-0": {
+            "JVKart": "src/"
+        },
+        "classmap": [
+            "./Module.php"
+        ]
+    }
+}

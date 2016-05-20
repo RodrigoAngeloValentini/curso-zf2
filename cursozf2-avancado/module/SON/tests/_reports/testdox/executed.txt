@@ -1,0 +1,47 @@
+SON\Controller\IndexController
+ [x] test erro404
+ [x] test indexAction
+
+SON\Entity\Task
+ [x] test verifica se classe task existe
+ [x] test verifica se a classe tem atributos esperados
+ [x] test verifica se classe possui get e sets dos atributos
+ [x] test verifica interface fluente nos metodos sets
+ [x] test verifica se recebe erro se id nao for inteiro
+ [x] test verifica se recebe erro se id for negativo ou zero
+ [x] test verifica se recebe erro se status for string
+ [x] test verifica se recebe erro se created at for diferente datetime
+ [x] test verifica se recebe erro se updated at for diferente datetime
+ [x] test verifica se createdAt e o updatedAt estao sendo inicializados
+ [x] test verifica metodo toArray
+ [x] test verifica hydrator no construtor
+
+SON\Filter\StripWhiteSpace
+ [x] test verifica se classe de filtro existe
+ [x] test verifica se classe herda de AbstractFilter
+ [x] test verifica se filtro esta removendo espacos em branco adicionais
+
+SON\Service\TaskFuncional
+ [x] test verifica se consegue inserir
+ [x] test verifica se consegue alterar registro
+ [x] test verifica se consegue deletar registro
+
+SON\Service\Task
+ [x] test verifica se classe task existe
+ [x] test verifica se a classe tem o atributo em
+ [x] test verifica metodo getEm
+ [x] test verifica insert
+ [x] test verifica se id esta no array do update
+ [x] test verifica retorno do update
+ [x] test verifica se id e inteiro no metodo delete
+ [x] test verifica retorno metodo delete
+
+SON\Validator\Primo
+ [x] test verifica se classe de primo existe
+ [x] test verifica se classe herda de AbstractValidator
+ [x] test verifica se nao e numero
+ [x] test verifica se e menor que 1
+ [x] test verifica se resto da divisao entre 2 e o numero e 0
+ [x] test verifica se resto da divisao entre 2 e o numero e diferente de 0
+ [x] test verifica mensagem de erro quando numero nao e primo
+

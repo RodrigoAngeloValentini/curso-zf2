@@ -1,0 +1,55 @@
+<h3><?php echo $this->translate('Home'); ?></h3>
+
+<?php echo $this->translate('Hello'); ?> SON,
+
+<br><br>
+
+<?php
+
+/*
+echo $this->dateFormat(
+        new DateTime(),
+         IntlDateFormatter::SHORT,
+         IntlDateFormatter::NONE,
+         "pt_BR"
+        );
+ 
+
+
+$this->plugin("dateFormat")->setTimezone("America/Sao_Paulo")->setLocale("pt_BR");
+
+echo $this->dateFormat(new DateTime, IntlDateFormatter::MEDIUM, IntlDateFormatter::MEDIUM);
+ * 
+ */
+
+echo $this->numberFormat(
+        1234.56789,
+         NumberFormatter::DECIMAL,
+         NumberFormatter::TYPE_DEFAULT,
+         "pt_BR"
+        
+        )."<br>";
+
+echo $this->numberFormat(
+        0.43,
+         NumberFormatter::PERCENT,
+         NumberFormatter::TYPE_DEFAULT,
+         "pt_BR"
+        
+        )."<br>";
+
+echo $this->numberFormat(
+        0.1113858574949484,
+         NumberFormatter::SCIENTIFIC,
+         NumberFormatter::TYPE_DEFAULT,
+         "pt_BR"
+        
+        )."<br>";
+
+echo $this->currencyFormat(
+        12.3,
+        "EUR"
+        )."<br>";
+
+
+echo $this->translatePlural("cachorro","cachorros",3);

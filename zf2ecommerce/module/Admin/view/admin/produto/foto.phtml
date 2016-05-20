@@ -1,0 +1,25 @@
+<div class="panel panel-default">
+	<div class="panel-heading">Produto fotos</div>
+	<div class="panel-body">
+		<div class="row">
+		<?php if (count($fotos)):?>
+			<?php foreach ($fotos as $foto):?>
+			  	<div class="col-xs-6 col-md-3">
+			    	<a href="javascript:;" class="thumbnail">
+			      		<img src="<?php echo $this->basePath() . '/arquivos/produtos/thumbs/' . $id . '/'  . $foto->getArquivo()?>" alt="<?php echo $foto->getArquivo()?>">
+			    	</a>
+			    	<div class="caption">
+			    		<p><a href="<?php echo $this->url('admin/default', array('controller' => 'produto', 'action' => 'foto-excluir', 'id' => $foto->getId()))?>" class="btn btn-primary" role="button">Excluir</a></p>
+			    	</div>
+			  	</div>
+		  	<?php endforeach;?>
+		<?php endif;?>
+		</div>
+		<div class="row">
+			<form action="<?php echo $this->url('admin/default', array('controller' => 'produto', 'action' => 'foto', 'id' => $id))?>" name="form" method="post" enctype="multipart/form-data">
+				<input type="file" name="foto">
+				<input type="submit" value="Upload">
+			</form>
+		</div>
+	</div>
+</div>

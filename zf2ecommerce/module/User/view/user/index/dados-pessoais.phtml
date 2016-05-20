@@ -1,0 +1,40 @@
+					<div class="col-md-12">
+						<header class="content-title">
+							<h1 class="title">Editar os dados pessoais</h1>
+						</header>
+						<form action="<?php echo $this->url('dados_pessoais') ?>" id="register-form" method="post" name="register-form">
+        				<div class="row">
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<fieldset>
+									<div class="input-group">
+										<span class="input-group-addon"><span class="input-icon input-icon-password"></span><span class="input-text">RG &#42;</span></span>
+										<?php echo $this->formElement($form->get('rg'))?>
+										<?php echo $this->formElementErrors($form->get('rg'))?>
+									</div>
+									<div class="input-group">
+										<span class="input-group-addon"><span class="input-icon input-icon-password"></span><span class="input-text">CPF &#42;</span></span>
+										<?php echo $this->formElement($form->get('cpf'))?>
+										<?php echo $this->formElementErrors($form->get('cpf'))?>
+									</div>
+									<div class="input-group">
+										<span class="input-group-addon"><span class="input-icon input-icon-phone"></span><span class="input-text">Telefone &#42;</span></span>
+										<?php echo $this->formElement($form->get('telefone'))?>
+										<?php echo $this->formElementErrors($form->get('telefone'))?>
+									</div>
+									<div class="input-group">
+										<span class="input-group-addon"><span class="input-icon input-icon-phone"></span><span class="input-text">Celular &#42;</span></span>
+										<?php echo $this->formElement($form->get('celular'))?>
+										<?php echo $this->formElementErrors($form->get('celular'))?>
+									</div>
+								</fieldset>
+							</div><!-- End .col-md-6 -->
+        				</div><!-- End .row -->
+						
+						<div class="row">
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<input type="submit" value="Salvar" class="btn btn-custom-2 btn-lg md-margin">
+							</div><!-- End .col-md-6 -->
+						</div><!-- End .row -->
+        				</form>
+        			</div><!-- End .col-md-12 -->
+        		</div><!-- End .row -->

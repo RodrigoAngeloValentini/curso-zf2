@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html class="ie8"> <![endif]-->
+<!--[if IE 9]> <html class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <title><?php echo $this->headTitle('ZF2 '. $this->translate('E-commmerce'))->setSeparator(' - ')->setAutoEscape(false) ?></title>
+        <meta name="description" content="Responsive modern ecommerce Html5 Template">
+        <!--[if IE]> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <![endif]-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link href='//fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic%7CPT+Gudea:400,700,400italic%7CPT+Oswald:400,700,300' rel='stylesheet' id="googlefont">
+        
+        <!-- Le styles -->
+        <?php echo $this->headLink()->appendStylesheet($this->basePath() . '/skin/frontend/css/bootstrap.min.css')
+                        ->appendStylesheet($this->basePath() . '/skin/frontend/css/font-awesome.min.css')
+                        ->appendStylesheet($this->basePath() . '/skin/frontend/css/prettyPhoto.css')
+                        ->appendStylesheet($this->basePath() . '/skin/frontend/css/sequence-slider.css')
+                        ->appendStylesheet($this->basePath() . '/skin/frontend/css/owl.carousel.css')
+                        ->appendStylesheet($this->basePath() . '/skin/frontend/css/responsive.css')
+        				->appendStylesheet($this->basePath() . '/skin/frontend/css/colpick.css')
+                        ->appendStylesheet($this->basePath() . '/skin/frontend/css/style.css') ?>
+        
+        <!--- Modernizr -->
+        <script src="<?php echo $this->basePath()?>/skin/frontend/js/modernizr.custom.js"></script>
+        
+        <!-- Favicon and Apple Icons -->
+        <link rel="icon" type="image/png" href="<?php $this->basePath() . '/skin/frontend/'?>/images/icons/icon.png">
+        <link rel="apple-touch-icon" sizes="57x57" href="<?php $this->basePath() . '/skin/frontend/'?>/images/icons/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="<?php $this->basePath() . '/skin/frontend/'?>/images/icons/apple-icon-72x72.png">
+        
+        <!--- jQuery -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="<?php $this->basePath() . '/skin/frontend/'?>/js/jquery-1.11.0.min.js"><\/script>')</script>
+		<!--[if lt IE 9]>
+			<script src="<?php $this->basePath() . '/skin/frontend/'?>/js/html5shiv.js"></script>
+			<script src="<?php $this->basePath() . '/skin/frontend/'?>/js/respond.min.js"></script>
+		<![endif]-->
+	    
+		<style id="custom-style">
+		
+		</style>
+    </head>
+    <body>
+    
+    <div id="wrapper">
+    	<?php echo $this->partial('layout/header')?>
+    	
+    	<?php echo $this->partial('layout/content_clean')?>    
+    	
+    	<?php echo $this->partial('layout/footer')?>
+    	
+    </div><!-- End #wrapper -->
+    	
+	    <a href="#" id="scroll-top" title="Scroll to Top"><i class="fa fa-angle-up"></i></a><!-- End #scroll-top -->
+	<!-- END -->
+	
+	<!-- Scripts -->
+        <?php echo $this->headScript()
+            ->appendFile($this->basePath() . '/skin/frontend/js/bootstrap.min.js')
+            ->appendFile($this->basePath() . '/skin/frontend/js/smoothscroll.js')
+            ->appendFile($this->basePath() . '/skin/frontend/js/retina-1.1.0.min.js')
+            ->appendFile($this->basePath() . '/skin/frontend/js/jquery.placeholder.js')
+            ->appendFile($this->basePath() . '/skin/frontend/js/jquery.hoverIntent.min.js')
+            ->appendFile($this->basePath() . '/skin/frontend/js/twitter/jquery.tweet.min.js')
+            ->appendFile($this->basePath() . '/skin/frontend/js/jquery.flexslider-min.js')
+            ->appendFile($this->basePath() . '/skin/frontend/js/owl.carousel.min.js')
+            ->appendFile($this->basePath() . '/skin/frontend/js/jflickrfeed.min.js')
+            ->appendFile($this->basePath() . '/skin/frontend/js/jquery.prettyPhoto.js')
+            ->appendFile($this->basePath() . '/skin/frontend/js/jquery.sequence-min.js')
+            ->appendFile($this->basePath() . '/skin/frontend/js/jquery.isotope.min.js')
+            ->appendFile($this->basePath() . '/skin/frontend/js/jquery.fitvids.js')
+            ->appendFile($this->basePath() . '/skin/frontend/js/colpick.js')
+            ->appendFile($this->basePath() . '/skin/frontend/js/jquery.elastislide.js')
+            ->appendFile($this->basePath() . '/skin/frontend/js/jquery.mlens-1.3.min.js')
+            ->appendFile($this->basePath() . '/skin/frontend/js/main.js')
+            ;?>
+        
+<script>
+		$(function() {
+
+			var carouselContainer = $('#product-carousel'),
+                productImg =  $('#product-image');
+
+			carouselContainer.elastislide({
+				orientation : 'vertical',
+				minItems : 4
+					
+			});
+
+            productImg.mlens({
+                imgSrc: $("#product-image").attr("data-big"),         
+                lensShape: "square",
+                lensSize: 150,
+                borderSize: 4,
+                borderColor: "#999",
+                borderRadius: 0
+            });
+			
+			
+			var oldImg = productImg.attr('src');
+			carouselContainer.find('li').on('mouseover', function() {
+				
+				var newImg = $(this).find('a').attr('href');
+				
+                productImg.attr({'src': newImg, 'data-big': newImg}).trigger('imagechanged');
+                
+			});
+
+            // triggered with custom event
+            productImg.on('imagechanged', function() {
+                productImg.mlens("update", 0 ,{
+                    imgSrc: productImg.attr("data-big"),
+                    lensShape: "square",
+                    lensSize: 150,
+                    borderSize: 4,
+                    borderColor: "#999"
+                });
+            });
+
+    		// Sequence.js Slider Plugin
+			var options = {
+				nextButton: true,
+				prevButton: true,
+				pagination:true,
+				autoPlay: true,
+				autoPlayDelay: 8500,
+				pauseOnHover: true,
+				preloader: true,
+				theme: 'slide',
+				speed: 700,
+				animateStartingFrameIn: true
+                },
+				homeSlider = $('#slider-sequence').sequence(options).data("sequence");
+    	
+    	});
+    </script>
+    <?php echo $this->inlineScript() ?>
+    </body>
+</html>
